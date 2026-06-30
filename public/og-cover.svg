@@ -17,7 +17,7 @@
   </g>
   <text x="90" y="250" font-family="monospace" font-size="28" fill="#5eead4">$ ./boot --portfolio</text>
   <text x="90" y="350" font-family="Arial, sans-serif" font-size="86" font-weight="800" fill="url(#g)">DEV.EXE</text>
-  <text x="92" y="420" font-family="Arial, sans-serif" font-size="34" font-weight="600" fill="#e8ecf8">Your Name — a playable developer portfolio</text>
+  <text x="92" y="420" font-family="Arial, sans-serif" font-size="34" font-weight="600" fill="#e8ecf8">Arpit — a playable developer portfolio</text>
   <text x="92" y="470" font-family="monospace" font-size="24" fill="#9aa3b8">// type commands to unlock projects, skills &amp; more</text>
   <rect x="90" y="520" width="220" height="56" rx="14" fill="#5eead4"/>
   <text x="200" y="556" font-family="monospace" font-size="22" font-weight="700" fill="#05060a" text-anchor="middle">run portfolio()</text>

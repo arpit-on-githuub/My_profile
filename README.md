@@ -1,43 +1,68 @@
-# DEV.EXE — A Playable Developer Portfolio
+# DEV.EXE — my playable developer portfolio
 
-A high-end, interactive portfolio for **Arpit** (CSE @ IIT Jodhpur) that feels like a
-**coding game / terminal challenge**. Visitors unlock sections (projects, skills, education,
-experience, contact…) by typing commands like `visit projects`, `load education`, or
-`run portfolio()`. It ships with an in-browser **AI guide**, an XP/level system, badges,
-quests, easter eggs, and Awwwards-style motion — while still working as a serious,
-recruiter-friendly portfolio.
+> A portfolio that behaves like a little terminal game. You don't *scroll* it — you *play* it.
+> Type commands like `visit projects` or `run portfolio()` to unlock each section.
 
-> Built with React 19 + TypeScript + Vite + Tailwind v4 + Framer Motion + Zustand.
+Hi, I'm **Arpit** — a Computer Science undergrad at **IIT Jodhpur**. I got tired of the usual
+scroll-down-and-skim portfolio, so I built one that's actually fun to poke at: a terminal sits
+front and center, and visitors unlock my projects, skills, education and more by typing commands
+(or by letting the built-in AI guide walk them through it). It's playful on the surface, but
+underneath it's still a serious, recruiter-friendly portfolio — everything important is one
+command away.
+
+🔗 **Live demo:** _add your deployed URL here_ · 💻 **Best on desktop**, fully responsive on mobile.
 
 ---
 
-## ✨ Highlights
+## Why I built it this way
 
-- **Command-driven navigation** — type commands in the on-page terminal to unlock sections.
-  Fuzzy matching tolerates typos and suggests "did you mean …?".
-- **Two-zone layout** — left = terminal challenge, right = Mission Control (quest log, hints, HUD).
-- **10 unlockable sections** — About, Skills, Education (with JEE ranks + coursework-derived
-  skills), Toolbox ("things I've worked with"), Projects, Experience, Achievements (+ leadership),
+Most portfolios say "here's what I can do." I wanted mine to *show* it. The whole experience is a
+small product in itself — a command parser, a fuzzy matcher that forgives typos, a tiny in-browser
+"AI" that understands what you're looking for, a level/XP system, and a pile of motion design — all
+wired together with clean, reusable components. If you're a recruiter, you can skip the game and
+just type `run portfolio()` to reveal everything at once.
+
+## What's inside
+
+- **A real terminal.** Type commands to unlock sections. It autocompletes (`Tab`), remembers
+  history (`↑`/`↓`), tolerates typos with "did you mean…?", and answers back with a bit of wit.
+- **An AI guide (no API key needed).** Ask it things like *"best project for a backend role?"* or
+  *"what is Arpit best at?"* and it replies **and** opens the right section. It's a deterministic
+  intent engine today, but it's structured so a real LLM can drop straight into one function.
+- **Ten unlockable sections** — About, Skills, Education (with JEE ranks + skills derived from my
+  coursework), a Toolbox of things I've actually worked with, Projects, Experience, Achievements,
   Contact, Resume, and an AI Playground.
-- **Cursor-following project preview** — hover a featured build and a floating app-window mock
-  tracks your cursor. Plus 3D tilt cards and magnetic buttons.
-- **In-browser AI guide** — intent detection + project recommender + Q&A. No API key required.
-  Ask "best project for backend roles" or "what are they best at?" and it answers *and* opens the
-  right panel. (Structured so a real LLM can be dropped into `src/lib/ai.ts → generateReply()`.)
-- **Gamification** — XP, levels, badges, a quest log, achievement toasts, and a portfolio-completion
-  progress bar. Progress persists via `localStorage`.
-- **Easter eggs** — secret commands (`matrix`, `sudo`, `coffee`, `hack`, …), the Konami code, and an
-  "inspect source" console message.
-- **Premium visuals** — glassmorphism, animated gradient borders, particle field, cursor aura,
-  4 switchable themes (Aurora / Synthwave / Matrix / Solar), CRT scanline mode.
-- **Accessible & responsive** — keyboard navigation, `prefers-reduced-motion` fallback, skip link,
-  semantic structure, SEO meta, and a `<noscript>` fallback.
+- **Hover-to-preview projects.** Hovering a featured project floats a little app-window mock that
+  follows your cursor — plus 3D tilt cards and magnetic buttons.
+- **Game feel.** XP, levels, badges, a quest log, achievement toasts, and a progress bar. Your
+  progress is saved locally, so it remembers you on the next visit.
+- **Easter eggs.** A few secret commands and the Konami code are hidden in there. Curiosity is
+  rewarded. 😉
+- **Considered details.** Glassmorphism, a particle field, a cursor aura, four switchable themes,
+  reduced-motion and keyboard-navigation support, SEO meta, and a `<noscript>` fallback.
+
+## The projects it showcases
+
+| Project | What it is | Tech |
+| ------- | ---------- | ---- |
+| **Vamos** | Real-time ride-pooling for campuses & tech parks | Next.js, Supabase, PostgreSQL, WebSockets |
+| **Orbit** | A productivity dashboard (tasks · habits · time-blocks) | React 18, Vite, Vanilla CSS |
+| **Movie Recommendation System** | Hybrid recommender (collaborative + content + SVD) | Python, scikit-learn, Streamlit |
+| **Smart Route Planner** | Dijkstra shortest-path over a city graph | C++ |
 
 ---
 
-## 🚀 Getting started
+## Tech stack
+
+**React 19 · TypeScript · Vite · Tailwind CSS v4 · Framer Motion · Zustand**
+
+No backend, no database, no API keys — it's a fast static site that deploys anywhere (I use Vercel).
+
+## Run it locally
 
 ```bash
+git clone <your-repo-url>
+cd <repo-folder>
 npm install
 npm run dev      # http://localhost:5173
 ```
@@ -45,85 +70,66 @@ npm run dev      # http://localhost:5173
 Other scripts:
 
 ```bash
-npm run build    # type-check (tsc) + production build to /dist
+npm run build    # type-check + production build → /dist
 npm run preview  # preview the production build
 npm run lint     # oxlint
 ```
 
----
+## How to play (the commands)
 
-## 🎮 How to play
-
-Type into the terminal (or click a quest in Mission Control):
-
-| Command               | Unlocks / does                          |
-| --------------------- | --------------------------------------- |
-| `help`                | List every command                      |
-| `decode about`        | About section                           |
-| `show skills`         | Skill tree                              |
-| `load education`      | Education, JEE ranks & coursework       |
-| `open toolbox`        | Tools & platforms I've worked with      |
-| `visit projects`      | Project build log (hover to preview!)   |
-| `trace experience`    | Career timeline                         |
-| `unlock achievements` | Achievements, stats & leadership        |
-| `contact me`          | Boss-level contact form                 |
-| `open resume`         | Resume (view / download / print)        |
-| `enter ai`            | AI playground                           |
-| `run portfolio()`     | Speed-run: unlock everything            |
-| `ask <question>`      | Talk to the AI guide                    |
-| `theme` / `crt`       | Cycle theme / toggle scanlines          |
-| `progress` / `reset`  | Show progress / wipe save               |
-
-Secret commands and the Konami code exist. Curiosity is rewarded. 😉
+| Command | What it does |
+| ------- | ------------ |
+| `help` | List every command |
+| `decode about` | About me |
+| `show skills` | Skill tree |
+| `load education` | Education, JEE ranks & coursework |
+| `open toolbox` | Tools & platforms I've worked with |
+| `visit projects` | Project build log (hover to preview!) |
+| `trace experience` | Work timeline |
+| `unlock achievements` | Achievements, stats & leadership |
+| `contact me` | Get in touch |
+| `open resume` | View / download my resume |
+| `enter ai` | The AI playground |
+| `run portfolio()` | Unlock everything at once |
+| `ask <question>` | Talk to the AI guide |
 
 ---
 
-## 🧩 Make it yours
+## Want to use this as a template?
 
-**Everything lives in one file:** [`src/data/portfolio.ts`](src/data/portfolio.ts).
-Edit `profile` (name, email, phone, socials, resume link), `skills`, `projects` (with their
-links), `experience`, `education`, `courses`, `toolbox`, `achievements`, `leadership`, and
-`aiKnowledge` — the whole site (including the AI guide and the generated resume) updates
-automatically.
-
-Other customization points:
-
-- **Sections / commands** — `src/data/sections.ts` (titles, commands, aliases, XP, hints, quests).
-- **Badges** — `src/data/badges.ts`.
-- **AI behavior** — `src/lib/ai.ts` (`generateReply()` is the single hook to swap in a real LLM).
-- **Themes & design tokens** — `src/index.css` (`@theme` + `html[data-theme='…']` blocks).
-- **SEO / social** — `index.html` (title, meta, Open Graph) and `public/og-cover.svg`.
-- **Resume** — `src/lib/resume.ts`. `profile.resumeUrl` links your hosted PDF; the client
-  can also generate one live from the data.
-
----
-
-## 🏗️ Architecture
+Everything you'd change lives in **one file**: [`src/data/portfolio.ts`](src/data/portfolio.ts).
+Update the `profile`, `skills`, `projects`, `experience`, `education`, `toolbox`, `achievements`,
+and `leadership` objects and the whole site — including the AI guide and the generated resume —
+updates itself. A quick tour of the rest:
 
 ```
 src/
-├─ data/            # content + config (portfolio, sections, badges) — edit these
-├─ store/           # Zustand game store (unlocks, XP, badges, toasts, theme) + persistence
-├─ lib/             # commands parser, AI engine, fuzzy match, resume gen, utils, Konami hook
+├─ data/         # all content (portfolio, sections, badges) — start here
+├─ store/        # Zustand game state (unlocks, XP, badges, theme) + local persistence
+├─ lib/          # command parser, AI engine, fuzzy matching, resume generator
 ├─ components/
-│  ├─ effects/      # animated background, particles, cursor aura
-│  ├─ ui/           # GlassCard, GlowButton, TiltCard, Magnetic, TypeWriter, counters, etc.
-│  ├─ terminal/     # the command terminal + autocomplete
-│  ├─ mission/      # Mission Control (HUD, quest log, hints, badges)
-│  ├─ sections/     # Home, About, Skills, Education, Toolbox, Projects, Experience,
-│  │                #   Achievements, Contact, Resume, AI  (+ ProjectShowcase hover preview)
-│  └─ system/       # BootScreen, ToastStack, AssistantPanel, AIChat
-└─ App.tsx          # layout + theming + deep-linking + scroll orchestration
+│  ├─ effects/   # animated background, particles, cursor aura
+│  ├─ ui/        # reusable bits (glass cards, buttons, tilt, counters, typewriter…)
+│  ├─ terminal/  # the command terminal
+│  ├─ mission/   # the quest log / HUD panel
+│  ├─ sections/  # each unlockable section
+│  └─ system/    # boot screen, toasts, AI assistant
+└─ App.tsx       # layout, theming, deep-linking, scroll
 ```
+
+Other knobs: commands & sections in `src/data/sections.ts`, AI behaviour in `src/lib/ai.ts`
+(`generateReply()` is the single hook to swap in a real LLM), and themes/design tokens in
+`src/index.css`.
 
 ---
 
-## ♿ Accessibility & performance notes
+## A note on accessibility
 
-- Respects `prefers-reduced-motion` (ambient animation and counters degrade gracefully).
-- Full keyboard support in the terminal (history, `Tab` autocomplete, `Esc`), a skip link, focus-visible
-  styles, and ARIA labels on interactive controls.
-- Particle/cursor effects are pointer- and motion-aware and won't run on touch / reduced-motion.
-- Progress is stored locally; no tracking, no backend, no API keys.
+It's playful, but it's built to be usable: full keyboard support in the terminal, a skip link,
+focus-visible styles, ARIA labels, and a `prefers-reduced-motion` path that calms the animations
+right down. There's also a plain-text fallback for anyone with JavaScript disabled.
 
-Enjoy — and `run portfolio()`.
+---
+
+Built with a lot of coffee and a slightly unreasonable amount of motion design. If you made it this
+far — try the Konami code. 🎮
