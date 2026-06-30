@@ -1,6 +1,6 @@
 # arpit.exe — my playable developer portfolio
 
-> A portfolio that behaves like a little terminal game. You don't *scroll* it — you *play* it.
+> A portfolio that behaves like a little terminal game. You don't *scroll* it - you *play* it.
 > Type commands like `visit projects` or `run portfolio()` to unlock each section.
 
 Hi, I'm **Arpit** - a Computer Science undergrad at **IIT Jodhpur**. I got tired of the usual
@@ -56,7 +56,7 @@ just type `run portfolio()` to reveal everything at once.
 
 **React 19 · TypeScript · Vite · Tailwind CSS v4 · Framer Motion · Zustand**
 
-No backend, no database, no API keys — it's a fast static site that deploys anywhere (I use Vercel).
+No backend, no database, no API keys - it's a fast static site that deploys anywhere (I use Vercel).
 
 ## Run it locally
 
@@ -99,7 +99,7 @@ npm run lint     # oxlint
 
 Everything you'd change lives in **one file**: [`src/data/portfolio.ts`](src/data/portfolio.ts).
 Update the `profile`, `skills`, `projects`, `experience`, `education`, `toolbox`, `achievements`,
-and `leadership` objects and the whole site — including the AI guide and the generated resume —
+and `leadership` objects and the whole site - including the AI guide and the generated resume -
 updates itself. A quick tour of the rest:
 
 ```
