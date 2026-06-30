@@ -97,6 +97,17 @@ export const SECTIONS: SectionDef[] = [
     unlockLine: '// stack trace resolved. no panics found.',
   },
   {
+    id: 'research',
+    title: 'Research',
+    command: 'decrypt research',
+    aliases: ['research', 'decrypt research', 'open research', 'cat research', 'research log', 'show research'],
+    xp: 70,
+    icon: '✺',
+    hint: 'Try: decrypt research  — a glimpse of the lab.',
+    quest: 'Declassify the research.',
+    unlockLine: '// research partially declassified. mind the redactions.',
+  },
+  {
     id: 'achievements',
     title: 'Achievements',
     command: 'unlock achievements',
@@ -142,22 +153,7 @@ export const SECTIONS: SectionDef[] = [
   },
 ];
 
-/** Hidden bonus section — intentionally NOT part of SECTIONS, so it never shows
-    up in the quest log, nav, help, or completion %. Discover it with
-    `decrypt research`. A subtle glimpse of ongoing research. */
-export const RESEARCH_SECTION: SectionDef = {
-  id: 'research',
-  title: 'Research',
-  command: 'decrypt research',
-  aliases: ['research', 'decrypt research', 'open research', 'cat research', 'research log', 'show research'],
-  xp: 90,
-  icon: '✦',
-  hint: 'Hidden: try `decrypt research` for a peek at the lab.',
-  quest: 'Declassify the research.',
-  unlockLine: '// research partially declassified. mind the redactions.',
-};
-
-export const SECTION_MAP: Record<SectionId, SectionDef> = [...SECTIONS, RESEARCH_SECTION].reduce(
+export const SECTION_MAP: Record<SectionId, SectionDef> = SECTIONS.reduce(
   (acc, s) => {
     acc[s.id] = s;
     return acc;

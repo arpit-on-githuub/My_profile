@@ -9,17 +9,12 @@ export default function Research() {
   const def = SECTION_MAP.research;
   return (
     <SectionShell id="research">
-      <div className="mb-2 flex items-center gap-2">
-        <span className="rounded-md border border-[rgba(var(--acc2-rgb),0.4)] bg-[rgba(var(--acc2-rgb),0.1)] px-2 py-0.5 font-mono text-[11px] text-[rgb(var(--acc2-rgb))]">
-          ✦ HIDDEN · you found it
-        </span>
-      </div>
       <SectionHeading
-        index="✦"
+        index="07"
         icon={def.icon}
         title="From the Lab"
         command={def.command}
-        blurb="A quiet peek at the research I'm building — a few things shown, a few still under wraps."
+        blurb="A peek at the research I'm building — a few things shown, a few still under wraps."
       />
 
       <GlassCard className="max-w-3xl p-6 sm:p-7" animatedBorder>

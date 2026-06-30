@@ -11,7 +11,7 @@ export default function Achievements() {
   return (
     <SectionShell id="achievements">
       <SectionHeading
-        index="07"
+        index="08"
         icon={def.icon}
         title="Achievements"
         command={def.command}

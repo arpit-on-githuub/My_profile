@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useGameStore } from '../../store/useGameStore';
 import { profile } from '../../data/portfolio';
@@ -15,38 +15,50 @@ const LINES = [
   'ready.',
 ];
 
+const STEP_MS = 260;
+
 export default function BootScreen() {
   const booted = useGameStore((s) => s.booted);
   const setBooted = useGameStore((s) => s.setBooted);
   const [visible, setVisible] = useState(!booted);
   const [shown, setShown] = useState<string[]>([]);
+  const doneRef = useRef(false);
 
+  // Idempotent: dismiss the boot screen exactly once, then load the site.
+  const finish = useCallback(() => {
+    if (doneRef.current) return;
+    doneRef.current = true;
+    setVisible(false);
+    window.setTimeout(() => setBooted(true), 600);
+  }, [setBooted]);
+
+  // Reveal the lines progressively (purely cosmetic).
   useEffect(() => {
     if (booted) return;
     if (prefersReducedMotion()) {
       setShown(LINES);
-      const t = setTimeout(() => finish(), 500);
-      return () => clearTimeout(t);
+      return;
     }
     let i = 0;
-    const interval = setInterval(() => {
-      setShown((s) => [...s, LINES[i]]);
-      i++;
-      if (i >= LINES.length) {
-        clearInterval(interval);
-        setTimeout(() => finish(), 650);
-      }
-    }, 280);
-    return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const id = window.setInterval(() => {
+      i += 1;
+      setShown(LINES.slice(0, i));
+      if (i >= LINES.length) window.clearInterval(id);
+    }, STEP_MS);
+    return () => window.clearInterval(id);
+  }, [booted]);
 
-  const finish = () => {
-    setVisible(false);
-    setTimeout(() => setBooted(true), 650);
-  };
-
+  // FAILSAFE: always load the site after a fixed duration, even with no input.
   useEffect(() => {
+    if (booted) return;
+    const total = prefersReducedMotion() ? 500 : LINES.length * STEP_MS + 750;
+    const id = window.setTimeout(finish, total);
+    return () => window.clearTimeout(id);
+  }, [booted, finish]);
+
+  // Let the user skip with any key or click.
+  useEffect(() => {
+    if (booted) return;
     const skip = () => finish();
     window.addEventListener('keydown', skip);
     window.addEventListener('click', skip);
@@ -54,8 +66,7 @@ export default function BootScreen() {
       window.removeEventListener('keydown', skip);
       window.removeEventListener('click', skip);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [booted, finish]);
 
   if (booted) return null;
 
@@ -96,7 +107,7 @@ export default function BootScreen() {
             </div>
 
             <div className="mt-4 text-center font-mono text-[11px] text-faint">
-              press any key to skip →
+              loading… or press any key to skip →
             </div>
           </div>
         </motion.div>

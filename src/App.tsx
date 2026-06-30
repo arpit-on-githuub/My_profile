@@ -35,6 +35,7 @@ const SECTION_COMPONENTS = {
   toolbox: Toolbox,
   projects: Projects,
   experience: Experience,
+  research: Research,
   achievements: Achievements,
   contact: Contact,
   resume: Resume,
@@ -58,13 +59,13 @@ export default function App() {
   // Deep-link: unlock + scroll to a section referenced in the URL hash.
   useEffect(() => {
     const hash = window.location.hash.replace('#section-', '').replace('#', '');
-    const id = hash === 'research' ? 'research' : SECTIONS.find((s) => s.id === hash)?.id;
-    if (id) {
-      unlockSection(id, { silent: true });
+    const match = SECTIONS.find((s) => s.id === hash);
+    if (match) {
+      unlockSection(match.id, { silent: true });
       setTimeout(
         () =>
           document
-            .getElementById(`section-${id}`)
+            .getElementById(`section-${match.id}`)
             ?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
         700,
       );
@@ -124,7 +125,7 @@ export default function App() {
         <Home />
 
         {/* The two-zone console: left challenge / right mission control */}
-        <div className="mt-10 grid gap-5 lg:grid-cols-[1.5fr_1fr]">
+        <div id="console" className="mt-10 grid scroll-mt-24 gap-5 lg:grid-cols-[1.5fr_1fr]">
           <div className="h-[560px] lg:h-[600px]">
             <Terminal />
           </div>
@@ -137,11 +138,9 @@ export default function App() {
         <div>
           {SECTIONS.map((s) => {
             if (!unlocked[s.id]) return null;
-            const Comp = SECTION_COMPONENTS[s.id as keyof typeof SECTION_COMPONENTS];
+            const Comp = SECTION_COMPONENTS[s.id];
             return <Comp key={s.id} />;
           })}
-          {/* Hidden bonus — only renders once discovered via `decrypt research`. */}
-          {unlocked.research && <Research />}
         </div>
 
         <Footer />

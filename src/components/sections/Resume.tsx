@@ -13,7 +13,7 @@ export default function Resume() {
   return (
     <SectionShell id="resume">
       <SectionHeading
-        index="09"
+        index="10"
         icon={def.icon}
         title="Resume Artifact"
         command={def.command}

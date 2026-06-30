@@ -35,7 +35,7 @@ export default function Contact() {
         </span>
       </div>
       <SectionHeading
-        index="08"
+        index="09"
         icon={def.icon}
         title="Make Contact"
         command={def.command}

@@ -34,7 +34,7 @@ export default function AIPlayground() {
   return (
     <SectionShell id="ai">
       <SectionHeading
-        index="10"
+        index="11"
         icon={def.icon}
         title="AI Playground"
         command={def.command}

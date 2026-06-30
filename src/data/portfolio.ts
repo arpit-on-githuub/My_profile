@@ -121,36 +121,36 @@ export const profile = {
 };
 
 export const skills: SkillNode[] = [
-  { name: 'C++', level: 80, category: 'Languages', blurb: 'My DSA & systems weapon of choice.' },
-  { name: 'Python', level: 76, category: 'Languages', blurb: 'ML, scripting, quick prototypes.' },
-  { name: 'JavaScript', level: 78, category: 'Languages', blurb: 'The language of the web.' },
-  { name: 'TypeScript', level: 70, category: 'Languages', blurb: 'Types catch bugs before users do.' },
-  { name: 'C', level: 72, category: 'Languages', blurb: 'Where it all clicked into place.' },
+  { name: 'C++', level: 75, category: 'Languages', blurb: 'My DSA & systems weapon of choice.' },
+  { name: 'Python', level: 40, category: 'Languages', blurb: 'ML, scripting, quick prototypes.' },
+  { name: 'JavaScript', level: 25, category: 'Languages', blurb: 'The language of the web.' },
+  { name: 'TypeScript', level: 22, category: 'Languages', blurb: 'Types catch bugs before users do.' },
+  { name: 'C', level: 24, category: 'Languages', blurb: 'Where it all clicked into place.' },
 
-  { name: 'React.js', level: 80, category: 'Frontend', blurb: 'Composable UIs, custom hooks.' },
-  { name: 'Next.js', level: 66, category: 'Frontend', blurb: 'App router, server + client.' },
-  { name: 'Vite', level: 72, category: 'Frontend', blurb: 'Instant dev, lean builds.' },
-  { name: 'Framer Motion', level: 64, category: 'Frontend', blurb: 'Gestures & motion that feel premium.' },
-  { name: 'HTML / CSS', level: 78, category: 'Frontend', blurb: 'Vanilla CSS, design systems.' },
+  { name: 'React.js', level: 35, category: 'Frontend', blurb: 'Composable UIs, custom hooks.' },
+  { name: 'Next.js', level: 28, category: 'Frontend', blurb: 'App router, server + client.' },
+  { name: 'Vite', level: 30, category: 'Frontend', blurb: 'Instant dev, lean builds.' },
+  { name: 'Framer Motion', level: 24, category: 'Frontend', blurb: 'Gestures & motion that feel premium.' },
+  { name: 'HTML / CSS', level: 33, category: 'Frontend', blurb: 'Vanilla CSS, design systems.' },
 
-  { name: 'Node.js', level: 70, category: 'Backend', blurb: 'APIs and realtime servers.' },
-  { name: 'Express.js', level: 66, category: 'Backend', blurb: 'Routes, middleware, REST.' },
-  { name: 'MongoDB', level: 66, category: 'Backend', blurb: 'Document modeling for MERN.' },
-  { name: 'Supabase', level: 64, category: 'Backend', blurb: 'Realtime + auth on Postgres.' },
-  { name: 'PostgreSQL', level: 60, category: 'Backend', blurb: 'RLS, WAL, relational rigor.' },
+  { name: 'Node.js', level: 40, category: 'Backend', blurb: 'APIs and realtime servers.' },
+  { name: 'Express.js', level: 35, category: 'Backend', blurb: 'Routes, middleware, REST.' },
+  { name: 'MongoDB', level: 33, category: 'Backend', blurb: 'Document modeling for MERN.' },
+  { name: 'Supabase', level: 30, category: 'Backend', blurb: 'Realtime + auth on Postgres.' },
+  { name: 'PostgreSQL', level: 27, category: 'Backend', blurb: 'RLS, WAL, relational rigor.' },
 
   { name: 'Machine Learning', level: 64, category: 'AI/ML', blurb: 'PRML foundations, applied.' },
   { name: 'Recommender Systems', level: 62, category: 'AI/ML', blurb: 'Collaborative + content + SVD.' },
-  { name: 'NumPy / Pandas', level: 72, category: 'AI/ML', blurb: 'Data wrangling at speed.' },
-  { name: 'scikit-learn', level: 62, category: 'AI/ML', blurb: 'Models, metrics, pipelines.' },
+  { name: 'NumPy / Pandas', level: 38, category: 'AI/ML', blurb: 'Data wrangling at speed.' },
+  { name: 'scikit-learn', level: 30, category: 'AI/ML', blurb: 'Models, metrics, pipelines.' },
 
   { name: 'Data Structures & Algorithms', level: 80, category: 'CS Core', blurb: 'Daily on LeetCode.' },
-  { name: 'OOP', level: 74, category: 'CS Core', blurb: 'Clean, extensible designs.' },
-  { name: 'Graph Algorithms', level: 72, category: 'CS Core', blurb: 'Dijkstra and friends.' },
+  { name: 'OOP', level: 58, category: 'CS Core', blurb: 'Clean, extensible designs.' },
+  { name: 'Graph Algorithms', level: 54, category: 'CS Core', blurb: 'Dijkstra and friends.' },
 
   { name: 'Git / GitHub', level: 80, category: 'Tools', blurb: 'Branches, PRs, sane history.' },
-  { name: 'Vercel', level: 70, category: 'Tools', blurb: 'Ship to the edge in seconds.' },
-  { name: 'Railway', level: 64, category: 'Tools', blurb: 'Deploy backends & DBs fast.' },
+  { name: 'Vercel', level: 58, category: 'Tools', blurb: 'Ship to the edge in seconds.' },
+  { name: 'Railway', level: 54, category: 'Tools', blurb: 'Deploy backends & DBs fast.' },
 ];
 
 export const projects: Project[] = [
@@ -398,6 +398,7 @@ export const toolbox: ToolGroup[] = [
       { name: 'GitHub', note: 'Collaboration' },
       { name: 'VS Code', note: 'Editor' },
       { name: 'Antigravity', note: 'Agentic IDE' },
+      { name: 'Anaconda', note: 'Python / data env' },
       { name: 'Google Colab', note: 'Notebooks' },
     ],
   },
@@ -407,6 +408,12 @@ export const toolbox: ToolGroup[] = [
     items: [
       { name: 'Claude AI', note: 'Pair programmer' },
       { name: 'ChatGPT', note: 'Reasoning & drafts' },
+      { name: 'GitHub Copilot', note: 'Inline completion' },
+      { name: 'Cursor', note: 'AI code editor' },
+      { name: 'Codex', note: 'Coding agent' },
+      { name: 'Gemini', note: 'Content grasping' },
+      { name: 'Perplexity', note: 'Research & assignments' },
+      { name: 'Antigravity AI', note: 'Agentic builds' },
     ],
   },
 ];

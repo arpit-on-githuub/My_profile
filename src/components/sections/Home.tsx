@@ -18,10 +18,25 @@ export default function Home() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="max-w-3xl"
       >
-        <Pill tone="accent" className="mb-5">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[rgb(var(--acc-rgb))]" />
-          {profile.availability} · press play
-        </Pill>
+        <div className="mb-5 flex flex-wrap items-center gap-2.5">
+          <Pill tone="accent">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[rgb(var(--acc-rgb))]" />
+            {profile.availability}
+          </Pill>
+          <button
+            onClick={() =>
+              document
+                .getElementById('console')
+                ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            }
+            className="group inline-flex items-center gap-1.5 rounded-full border border-[rgba(var(--acc-rgb),0.5)] bg-[rgba(var(--acc-rgb),0.1)] px-3 py-1 font-mono text-[11px] text-acc transition-colors hover:bg-[rgba(var(--acc-rgb),0.2)]"
+          >
+            <span className="grid h-4 w-4 place-items-center rounded-full bg-[rgb(var(--acc-rgb))] text-[9px] text-[var(--bg-0)] transition-transform group-hover:scale-110">
+              ▶
+            </span>
+            press play
+          </button>
+        </div>
 
         <h1 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
           Hi, I'm <span className="text-gradient glow-text">{profile.name}</span>.
