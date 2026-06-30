@@ -10,7 +10,7 @@ front and center, and visitors unlock my projects, skills, education and more by
 underneath it's still a serious, recruiter-friendly portfolio - everything important is one
 command away.
 
-🔗 **Live demo:** coming soon · 💻 **Best on desktop**, fully responsive on mobile.
+🔗 **Live demo:** https://my-profile-phi-vert.vercel.app/ · 💻 **Best on desktop**, fully responsive on mobile.
 
 ---
 
