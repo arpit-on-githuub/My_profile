@@ -2,13 +2,13 @@ import { useGameStore } from '../store/useGameStore';
 import { SECTIONS } from '../data/sections';
 import { BADGES } from '../data/badges';
 import { profile } from '../data/portfolio';
-import { executeCommand } from '../lib/commands';
 
 export default function Footer() {
   const unlockedCount = useGameStore((s) => s.unlockedCount());
   const badges = useGameStore((s) => s.badges);
   const level = useGameStore((s) => s.level);
   const progressPct = useGameStore((s) => s.progressPct());
+  const setHelpOpen = useGameStore((s) => s.setHelpOpen);
 
   return (
     <footer className="mt-16 border-t border-white/8 py-10">
@@ -46,8 +46,8 @@ export default function Footer() {
             </a>
           ))}
           <button
-            onClick={() => executeCommand('help')}
-            className="font-mono text-xs text-muted transition-colors hover:text-acc"
+            onClick={() => setHelpOpen(true)}
+            className="font-mono text-xs text-acc transition-colors hover:brightness-125"
           >
             help
           </button>

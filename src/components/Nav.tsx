@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useGameStore, THEME_LABELS, type ThemeId } from '../store/useGameStore';
 import { SECTIONS } from '../data/sections';
-import { profile } from '../data/portfolio';
 import { executeCommand } from '../lib/commands';
 
 export default function Nav() {
@@ -24,9 +23,9 @@ export default function Nav() {
             ◉
           </span>
           <span className="font-display text-sm font-bold tracking-tight">
-            <span className="text-gradient">DEV.EXE</span>
+            <span className="text-gradient">arpit.exe</span>
             <span className="ml-2 hidden font-mono text-[11px] font-normal text-faint sm:inline">
-              {profile.handle}
+              // playable portfolio
             </span>
           </span>
         </button>

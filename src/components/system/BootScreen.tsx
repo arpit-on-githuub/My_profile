@@ -74,7 +74,7 @@ export default function BootScreen() {
               className="mb-6 text-center"
             >
               <div className="font-display text-4xl font-extrabold tracking-tight">
-                <span className="text-gradient">DEV.EXE</span>
+                <span className="text-gradient">arpit.exe</span>
               </div>
               <div className="mt-1 font-mono text-xs text-faint">
                 {profile.name} — playable portfolio

@@ -121,35 +121,36 @@ export const profile = {
 };
 
 export const skills: SkillNode[] = [
-  { name: 'C++', level: 88, category: 'Languages', blurb: 'My DSA & systems weapon of choice.' },
-  { name: 'Python', level: 85, category: 'Languages', blurb: 'ML, scripting, quick prototypes.' },
-  { name: 'JavaScript', level: 85, category: 'Languages', blurb: 'The language of the web.' },
-  { name: 'TypeScript', level: 80, category: 'Languages', blurb: 'Types catch bugs before users do.' },
-  { name: 'C', level: 80, category: 'Languages', blurb: 'Where it all clicked into place.' },
+  { name: 'C++', level: 80, category: 'Languages', blurb: 'My DSA & systems weapon of choice.' },
+  { name: 'Python', level: 76, category: 'Languages', blurb: 'ML, scripting, quick prototypes.' },
+  { name: 'JavaScript', level: 78, category: 'Languages', blurb: 'The language of the web.' },
+  { name: 'TypeScript', level: 70, category: 'Languages', blurb: 'Types catch bugs before users do.' },
+  { name: 'C', level: 72, category: 'Languages', blurb: 'Where it all clicked into place.' },
 
-  { name: 'React.js', level: 88, category: 'Frontend', blurb: 'Composable UIs, custom hooks.' },
-  { name: 'Next.js', level: 78, category: 'Frontend', blurb: 'App router, server + client.' },
-  { name: 'Vite', level: 84, category: 'Frontend', blurb: 'Instant dev, lean builds.' },
-  { name: 'Framer Motion', level: 76, category: 'Frontend', blurb: 'Gestures & motion that feel premium.' },
-  { name: 'HTML / CSS', level: 86, category: 'Frontend', blurb: 'Vanilla CSS, design systems.' },
+  { name: 'React.js', level: 80, category: 'Frontend', blurb: 'Composable UIs, custom hooks.' },
+  { name: 'Next.js', level: 66, category: 'Frontend', blurb: 'App router, server + client.' },
+  { name: 'Vite', level: 72, category: 'Frontend', blurb: 'Instant dev, lean builds.' },
+  { name: 'Framer Motion', level: 64, category: 'Frontend', blurb: 'Gestures & motion that feel premium.' },
+  { name: 'HTML / CSS', level: 78, category: 'Frontend', blurb: 'Vanilla CSS, design systems.' },
 
-  { name: 'Node.js', level: 80, category: 'Backend', blurb: 'APIs and realtime servers.' },
-  { name: 'Express.js', level: 78, category: 'Backend', blurb: 'Routes, middleware, REST.' },
-  { name: 'MongoDB', level: 76, category: 'Backend', blurb: 'Document modeling for MERN.' },
-  { name: 'Supabase', level: 76, category: 'Backend', blurb: 'Realtime + auth on Postgres.' },
-  { name: 'PostgreSQL', level: 72, category: 'Backend', blurb: 'RLS, WAL, relational rigor.' },
+  { name: 'Node.js', level: 70, category: 'Backend', blurb: 'APIs and realtime servers.' },
+  { name: 'Express.js', level: 66, category: 'Backend', blurb: 'Routes, middleware, REST.' },
+  { name: 'MongoDB', level: 66, category: 'Backend', blurb: 'Document modeling for MERN.' },
+  { name: 'Supabase', level: 64, category: 'Backend', blurb: 'Realtime + auth on Postgres.' },
+  { name: 'PostgreSQL', level: 60, category: 'Backend', blurb: 'RLS, WAL, relational rigor.' },
 
-  { name: 'Machine Learning', level: 75, category: 'AI/ML', blurb: 'PRML foundations, applied.' },
-  { name: 'Recommender Systems', level: 74, category: 'AI/ML', blurb: 'Collaborative + content + SVD.' },
-  { name: 'NumPy / Pandas', level: 80, category: 'AI/ML', blurb: 'Data wrangling at speed.' },
-  { name: 'scikit-learn', level: 72, category: 'AI/ML', blurb: 'Models, metrics, pipelines.' },
+  { name: 'Machine Learning', level: 64, category: 'AI/ML', blurb: 'PRML foundations, applied.' },
+  { name: 'Recommender Systems', level: 62, category: 'AI/ML', blurb: 'Collaborative + content + SVD.' },
+  { name: 'NumPy / Pandas', level: 72, category: 'AI/ML', blurb: 'Data wrangling at speed.' },
+  { name: 'scikit-learn', level: 62, category: 'AI/ML', blurb: 'Models, metrics, pipelines.' },
 
-  { name: 'Data Structures & Algorithms', level: 85, category: 'CS Core', blurb: 'Daily on LeetCode.' },
-  { name: 'OOP', level: 82, category: 'CS Core', blurb: 'Clean, extensible designs.' },
-  { name: 'Graph Algorithms', level: 80, category: 'CS Core', blurb: 'Dijkstra and friends.' },
+  { name: 'Data Structures & Algorithms', level: 80, category: 'CS Core', blurb: 'Daily on LeetCode.' },
+  { name: 'OOP', level: 74, category: 'CS Core', blurb: 'Clean, extensible designs.' },
+  { name: 'Graph Algorithms', level: 72, category: 'CS Core', blurb: 'Dijkstra and friends.' },
 
-  { name: 'Git / GitHub', level: 86, category: 'Tools', blurb: 'Branches, PRs, sane history.' },
-  { name: 'Vercel', level: 80, category: 'Tools', blurb: 'Ship to the edge in seconds.' },
+  { name: 'Git / GitHub', level: 80, category: 'Tools', blurb: 'Branches, PRs, sane history.' },
+  { name: 'Vercel', level: 70, category: 'Tools', blurb: 'Ship to the edge in seconds.' },
+  { name: 'Railway', level: 64, category: 'Tools', blurb: 'Deploy backends & DBs fast.' },
 ];
 
 export const projects: Project[] = [
@@ -290,6 +291,37 @@ export const experience: ExperienceItem[] = [
   },
 ];
 
+/** A subtle, "redacted" glimpse of ongoing research — the hidden bonus section. */
+export interface ResearchGlimpse {
+  project: string;
+  subtitle: string;
+  lab: string;
+  status: string;
+  link: { label: string; url: string };
+  revealed: string[];
+  redacted: string[];
+  note: string;
+}
+
+export const research: ResearchGlimpse = {
+  project: 'Campus Porter',
+  subtitle: 'A campus intra-logistics platform',
+  lab: 'IIT Jodhpur · under Prof. Venkat Raman Reddy',
+  status: 'Active research · since Feb 2026',
+  link: { label: 'peek at the repo', url: 'https://github.com/arpit-on-githuub/campus-porter' },
+  revealed: [
+    'Real-time order tracking with QR-based handoff validation.',
+    'Authored the feature-requirements spec across 3 core user flows.',
+    'MERN-stack core, designed to scale to 200+ campus users.',
+  ],
+  redacted: [
+    'Handoff trust model & ████████ verification',
+    'Porter assignment via ███████ routing heuristics',
+    'Pilot rollout metrics — ████ users, ███% faster handoffs',
+  ],
+  note: 'Still cooking. Happy to walk you through the full thing on request.',
+};
+
 export const education: EducationItem[] = [
   {
     id: 'edu-iitj',
@@ -355,6 +387,7 @@ export const toolbox: ToolGroup[] = [
       { name: 'PostgreSQL', note: 'Relational DB' },
       { name: 'Streamlit', note: 'ML apps' },
       { name: 'Vercel', note: 'Deployment' },
+      { name: 'Railway', note: 'Deployment' },
     ],
   },
   {
@@ -364,6 +397,7 @@ export const toolbox: ToolGroup[] = [
       { name: 'Git', note: 'Version control' },
       { name: 'GitHub', note: 'Collaboration' },
       { name: 'VS Code', note: 'Editor' },
+      { name: 'Antigravity', note: 'Agentic IDE' },
       { name: 'Google Colab', note: 'Notebooks' },
     ],
   },
@@ -373,7 +407,6 @@ export const toolbox: ToolGroup[] = [
     items: [
       { name: 'Claude AI', note: 'Pair programmer' },
       { name: 'ChatGPT', note: 'Reasoning & drafts' },
-      { name: 'Antigravity AI', note: 'Build acceleration' },
     ],
   },
 ];

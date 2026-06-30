@@ -57,8 +57,7 @@ export default function Resume() {
             <div className="mb-2 font-mono text-xs text-faint">// quick facts</div>
             <ul className="space-y-2 text-sm text-muted">
               <li>
-                <span className="text-acc">▸</span> {profile.stats[0].value}
-                {profile.stats[0].suffix} years experience
+                <span className="text-acc">▸</span> 20 years of experience… of life
               </li>
               <li>
                 <span className="text-acc">▸</span> {experience[0].role} @ {experience[0].company}

@@ -74,6 +74,7 @@ interface GameState {
   activeSection: SectionId | null;
   focusProject: string | null;
   assistantOpen: boolean;
+  helpOpen: boolean;
   aiQuestionCount: number;
 
   // actions
@@ -92,6 +93,7 @@ interface GameState {
   setActiveSection: (id: SectionId | null) => void;
   setFocusProject: (id: string | null) => void;
   setAssistantOpen: (v: boolean) => void;
+  setHelpOpen: (v: boolean) => void;
   bumpAiQuestions: () => void;
   dismissToast: (id: string) => void;
   pushToast: (t: Omit<Toast, 'id'>) => void;
@@ -116,6 +118,7 @@ export const useGameStore = create<GameState>()(
       activeSection: null,
       focusProject: null,
       assistantOpen: false,
+      helpOpen: false,
       aiQuestionCount: 0,
 
       setBooted: (v) => set({ booted: v }),
@@ -226,6 +229,7 @@ export const useGameStore = create<GameState>()(
       setActiveSection: (id) => set({ activeSection: id }),
       setFocusProject: (id) => set({ focusProject: id }),
       setAssistantOpen: (v) => set({ assistantOpen: v }),
+      setHelpOpen: (v) => set({ helpOpen: v }),
 
       bumpAiQuestions: () =>
         set((s) => {

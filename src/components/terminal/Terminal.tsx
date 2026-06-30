@@ -31,7 +31,7 @@ export default function Terminal() {
       return;
     }
     seeded.current = true;
-    pushLine({ type: 'system', text: 'DEV.EXE terminal v1.0 — interactive portfolio shell' });
+    pushLine({ type: 'system', text: 'arpit.exe terminal v1.0 — interactive portfolio shell' });
     pushLine({ type: 'output', text: 'Type a command to unlock a section. New here? type `help`.' });
     pushLine({ type: 'hint', text: 'Quickstart: `decode about` → `show skills` → `visit projects`' });
   }, [history.length, pushLine]);

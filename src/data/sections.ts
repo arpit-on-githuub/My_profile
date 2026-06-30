@@ -11,7 +11,8 @@ export type SectionId =
   | 'achievements'
   | 'contact'
   | 'resume'
-  | 'ai';
+  | 'ai'
+  | 'research';
 
 export interface SectionDef {
   id: SectionId;
@@ -141,7 +142,22 @@ export const SECTIONS: SectionDef[] = [
   },
 ];
 
-export const SECTION_MAP: Record<SectionId, SectionDef> = SECTIONS.reduce(
+/** Hidden bonus section — intentionally NOT part of SECTIONS, so it never shows
+    up in the quest log, nav, help, or completion %. Discover it with
+    `decrypt research`. A subtle glimpse of ongoing research. */
+export const RESEARCH_SECTION: SectionDef = {
+  id: 'research',
+  title: 'Research',
+  command: 'decrypt research',
+  aliases: ['research', 'decrypt research', 'open research', 'cat research', 'research log', 'show research'],
+  xp: 90,
+  icon: '✦',
+  hint: 'Hidden: try `decrypt research` for a peek at the lab.',
+  quest: 'Declassify the research.',
+  unlockLine: '// research partially declassified. mind the redactions.',
+};
+
+export const SECTION_MAP: Record<SectionId, SectionDef> = [...SECTIONS, RESEARCH_SECTION].reduce(
   (acc, s) => {
     acc[s.id] = s;
     return acc;

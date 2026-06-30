@@ -5,7 +5,7 @@
    helpful errors (with fuzzy "did you mean" suggestions).
 ============================================================================ */
 
-import { SECTIONS, SECTION_MAP, type SectionId } from '../data/sections';
+import { SECTIONS, SECTION_MAP, RESEARCH_SECTION, type SectionId } from '../data/sections';
 import { profile, skills, projects } from '../data/portfolio';
 import { useGameStore } from '../store/useGameStore';
 import { generateReply } from './ai';
@@ -18,6 +18,9 @@ for (const s of SECTIONS) {
   ALIAS_TO_SECTION.set(normalize(s.command), s.id);
   for (const a of s.aliases) ALIAS_TO_SECTION.set(normalize(a), s.id);
 }
+
+/* The hidden research section is matched separately (kept out of suggestions). */
+const RESEARCH_ALIASES = new Set<string>(RESEARCH_SECTION.aliases.map((a) => normalize(a)));
 
 /* All strings we can suggest for "did you mean". */
 export const SUGGESTIBLE = [
@@ -239,6 +242,21 @@ export function executeCommand(raw: string): ExecResult {
     case 'npm run dev':
       void runPortfolio();
       return { recognized: true };
+  }
+
+  // ---- Hidden bonus: research glimpse ------------------------------------
+  if (RESEARCH_ALIASES.has(norm)) {
+    const def = SECTION_MAP.research;
+    const already = store.isUnlocked('research');
+    store.unlockSection('research', { silent: true });
+    if (already) {
+      push('output', 'research already decrypted — scrolling you there.');
+    } else {
+      store.findSecret('research'); // discovering it counts as an easter egg
+      push('success', def.unlockLine);
+      push('success', `▸ ${def.title} decrypted (+${def.xp} XP)`);
+    }
+    return { recognized: true };
   }
 
   // ---- Secret / easter-egg commands --------------------------------------

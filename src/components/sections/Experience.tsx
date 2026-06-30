@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { experience } from '../../data/portfolio';
 import { SECTION_MAP } from '../../data/sections';
+import { executeCommand } from '../../lib/commands';
 import SectionShell from './SectionShell';
 import SectionHeading from '../ui/SectionHeading';
 import Pill from '../ui/Pill';
@@ -75,6 +76,17 @@ export default function Experience() {
             </motion.div>
           ))}
         </div>
+      </div>
+
+      {/* subtle nudge toward the hidden research glimpse */}
+      <div className="mt-6 text-center font-mono text-[11px] text-faint/70">
+        <span className="opacity-70">// some of the research is still under wraps —</span>{' '}
+        <button
+          onClick={() => executeCommand('decrypt research')}
+          className="text-acc/80 underline-offset-2 transition-colors hover:text-acc hover:underline"
+        >
+          decrypt research
+        </button>
       </div>
     </SectionShell>
   );

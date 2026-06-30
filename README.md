@@ -1,24 +1,24 @@
-# DEV.EXE — my playable developer portfolio
+# arpit.exe — my playable developer portfolio
 
 > A portfolio that behaves like a little terminal game. You don't *scroll* it — you *play* it.
 > Type commands like `visit projects` or `run portfolio()` to unlock each section.
 
-Hi, I'm **Arpit** — a Computer Science undergrad at **IIT Jodhpur**. I got tired of the usual
+Hi, I'm **Arpit** - a Computer Science undergrad at **IIT Jodhpur**. I got tired of the usual
 scroll-down-and-skim portfolio, so I built one that's actually fun to poke at: a terminal sits
 front and center, and visitors unlock my projects, skills, education and more by typing commands
 (or by letting the built-in AI guide walk them through it). It's playful on the surface, but
-underneath it's still a serious, recruiter-friendly portfolio — everything important is one
+underneath it's still a serious, recruiter-friendly portfolio - everything important is one
 command away.
 
-🔗 **Live demo:** _add your deployed URL here_ · 💻 **Best on desktop**, fully responsive on mobile.
+🔗 **Live demo:** coming soon · 💻 **Best on desktop**, fully responsive on mobile.
 
 ---
 
 ## Why I built it this way
 
 Most portfolios say "here's what I can do." I wanted mine to *show* it. The whole experience is a
-small product in itself — a command parser, a fuzzy matcher that forgives typos, a tiny in-browser
-"AI" that understands what you're looking for, a level/XP system, and a pile of motion design — all
+small product in itself - a command parser, a fuzzy matcher that forgives typos, a tiny in-browser
+"AI" that understands what you're looking for, a level/XP system, and a pile of motion design - all
 wired together with clean, reusable components. If you're a recruiter, you can skip the game and
 just type `run portfolio()` to reveal everything at once.
 
@@ -29,15 +29,15 @@ just type `run portfolio()` to reveal everything at once.
 - **An AI guide (no API key needed).** Ask it things like *"best project for a backend role?"* or
   *"what is Arpit best at?"* and it replies **and** opens the right section. It's a deterministic
   intent engine today, but it's structured so a real LLM can drop straight into one function.
-- **Ten unlockable sections** — About, Skills, Education (with JEE ranks + skills derived from my
+- **Ten unlockable sections**- About, Skills, Education (with JEE ranks + skills derived from my
   coursework), a Toolbox of things I've actually worked with, Projects, Experience, Achievements,
   Contact, Resume, and an AI Playground.
 - **Hover-to-preview projects.** Hovering a featured project floats a little app-window mock that
-  follows your cursor — plus 3D tilt cards and magnetic buttons.
+  follows your cursor -plus 3D tilt cards and magnetic buttons.
 - **Game feel.** XP, levels, badges, a quest log, achievement toasts, and a progress bar. Your
   progress is saved locally, so it remembers you on the next visit.
 - **Easter eggs.** A few secret commands and the Konami code are hidden in there. Curiosity is
-  rewarded. 😉
+  rewarded. 
 - **Considered details.** Glassmorphism, a particle field, a cursor aura, four switchable themes,
   reduced-motion and keyboard-navigation support, SEO meta, and a `<noscript>` fallback.
 
@@ -131,5 +131,5 @@ right down. There's also a plain-text fallback for anyone with JavaScript disabl
 
 ---
 
-Built with a lot of coffee and a slightly unreasonable amount of motion design. If you made it this
-far — try the Konami code. 🎮
+Built with a lot of coffee and a slightly unreasonable amount of motion design (and ofcourse AI). If you made it this
+far- try the Konami code. 🎮

@@ -8,6 +8,7 @@ import CursorAura from './components/effects/CursorAura';
 import BootScreen from './components/system/BootScreen';
 import ToastStack from './components/system/ToastStack';
 import AssistantPanel from './components/system/AssistantPanel';
+import HelpModal from './components/system/HelpModal';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 
@@ -25,6 +26,7 @@ import Achievements from './components/sections/Achievements';
 import Contact from './components/sections/Contact';
 import Resume from './components/sections/Resume';
 import AIPlayground from './components/sections/AIPlayground';
+import Research from './components/sections/Research';
 
 const SECTION_COMPONENTS = {
   about: About,
@@ -56,13 +58,13 @@ export default function App() {
   // Deep-link: unlock + scroll to a section referenced in the URL hash.
   useEffect(() => {
     const hash = window.location.hash.replace('#section-', '').replace('#', '');
-    const match = SECTIONS.find((s) => s.id === hash);
-    if (match) {
-      unlockSection(match.id, { silent: true });
+    const id = hash === 'research' ? 'research' : SECTIONS.find((s) => s.id === hash)?.id;
+    if (id) {
+      unlockSection(id, { silent: true });
       setTimeout(
         () =>
           document
-            .getElementById(`section-${match.id}`)
+            .getElementById(`section-${id}`)
             ?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
         700,
       );
@@ -135,9 +137,11 @@ export default function App() {
         <div>
           {SECTIONS.map((s) => {
             if (!unlocked[s.id]) return null;
-            const Comp = SECTION_COMPONENTS[s.id];
+            const Comp = SECTION_COMPONENTS[s.id as keyof typeof SECTION_COMPONENTS];
             return <Comp key={s.id} />;
           })}
+          {/* Hidden bonus — only renders once discovered via `decrypt research`. */}
+          {unlocked.research && <Research />}
         </div>
 
         <Footer />
@@ -145,6 +149,7 @@ export default function App() {
 
       <ToastStack />
       <AssistantPanel />
+      <HelpModal />
     </>
   );
 }

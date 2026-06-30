@@ -163,6 +163,19 @@ const matchers: Matcher[] = [
     },
   },
   {
+    id: 'research',
+    test: (q) => has(q, 'research', 'paper', 'lab', 'campus porter', 'professor', 'thesis'),
+    run: () => ({
+      reply: [
+        "There's active research too — **Campus Porter**, a campus intra-logistics platform at IIT Jodhpur.",
+        "Real-time tracking with QR-based handoff validation on a MERN core. Some of it's still under wraps.",
+        'Type `decrypt research` for the glimpse.',
+      ],
+      openSection: 'research',
+      chips: ['Show me projects', 'What are they best at?', 'How do I contact them?'],
+    }),
+  },
+  {
     id: 'experience',
     test: (q) => has(q, 'experience', 'work history', 'career', 'job', 'company', 'companies', 'years', 'background'),
     run: () => {
