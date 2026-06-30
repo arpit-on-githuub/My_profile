@@ -1,4 +1,4 @@
-# arpit.exe — my playable developer portfolio
+# arpit.exe - my playable developer portfolio
 
 > A portfolio that behaves like a little terminal game. You don't *scroll* it - you *play* it.
 > Type commands like `visit projects` or `run portfolio()` to unlock each section.
