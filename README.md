@@ -131,5 +131,34 @@ right down. There's also a plain-text fallback for anyone with JavaScript disabl
 
 ---
 
+## 🕹️ Secret commands & easter eggs
+
+The terminal hides a few things for the curious. Type any of these into the on-page shell:
+
+| Command | What happens |
+| --- | --- |
+| `matrix` | Wake up, Neo… |
+| `sudo` | Nice try - you're not root (yet). |
+| `sudo make me a sandwich` | 🥪 |
+| `coffee` | HTTP 418: I'm a teapot. Coffee denied. |
+| `hack` | "Elite" hacking sequence, declassified. |
+| `vim` | You can check out any time you like… |
+| `rm -rf /` | Relax - the portfolio is read-only. |
+| `42` | The Answer to Life, the Universe, and Everything. |
+| `exit` | There is no exit. Only more portfolio. |
+| `ping` | pong. |
+
+Other hidden things to find:
+
+- **The Konami code** - `↑ ↑ ↓ ↓ ← → ← → B A` switches the theme and unlocks a badge. 🎮
+- **Inspect source** - open your browser's DevTools console for a hidden message.
+- **Fun toggles** - `theme` cycles the colour scheme (Aurora / Synthwave / Matrix / Solar), and `crt` adds retro scanlines.
+- **Handy commands** - `run portfolio()` unlocks everything at once, `inspect stack` gives a quick tech rundown, `whoami`, `ls`, `progress`, and `reset` all do what you'd expect.
+- **Badges** - discovering a secret earns the **Curious Hacker** badge; exploring sections, levelling up, and chatting with the AI guide earn others (see the bottom of *Mission Control*).
+
+> Tip: type `ask <anything>` to talk to the in-browser AI guide - e.g. `ask best project for backend`.
+
+---
+
 Built with a lot of coffee and a slightly unreasonable amount of motion design (and ofcourse AI). If you made it this
 far- try the Konami code. 🎮

@@ -11,20 +11,35 @@ export default function Contact() {
   const def = SECTION_MAP.contact;
   const pushToast = useGameStore((s) => s.pushToast);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [sent, setSent] = useState(false);
+  const [opened, setOpened] = useState(false);
 
+  // Submitting opens the visitor's own mail app, pre-filled and addressed to me.
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = encodeURIComponent(`Portfolio contact from ${form.name || 'a visitor'}`);
     const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
     window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-    setSent(true);
+    setOpened(true);
     pushToast({
       kind: 'info',
       title: 'Boss defeated 🐉',
-      detail: 'Message drafted. Thanks for reaching out!',
-      icon: '🤝',
+      detail: 'Opening your mail app — just hit send!',
+      icon: '📨',
     });
+  };
+
+  const buttonLabel = opened ? 'reopen mail app ↗' : 'open mail app ↗';
+  const statusLine = opened
+    ? '// opened your mail app — just hit send'
+    : '// opens your mail app, pre-filled & addressed to me';
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      pushToast({ kind: 'info', title: 'Email copied ✓', detail: profile.email, icon: '📋' });
+    } catch {
+      window.location.href = `mailto:${profile.email}`;
+    }
   };
 
   return (
@@ -84,10 +99,8 @@ export default function Contact() {
               />
             </Field>
             <div className="flex items-center justify-between">
-              <span className="font-mono text-[11px] text-faint">
-                {sent ? '// status: 200 OK' : '// encrypted on send'}
-              </span>
-              <GlowButton type="submit">{sent ? 'sent ✓ — send another' : 'transmit message ↗'}</GlowButton>
+              <span className="font-mono text-[11px] text-faint">{statusLine}</span>
+              <GlowButton type="submit">{buttonLabel}</GlowButton>
             </div>
           </div>
         </motion.form>
@@ -110,12 +123,16 @@ export default function Contact() {
               Based {profile.location}. Replies usually land within a day.
             </p>
             <div className="mt-3 flex flex-col gap-1">
-              <a
-                href={`mailto:${profile.email}`}
-                className="font-mono text-sm text-acc hover:underline"
+              <button
+                onClick={copyEmail}
+                title="Click to copy"
+                className="group flex items-center gap-1.5 text-left font-mono text-sm text-acc hover:underline"
               >
                 ✉ {profile.email}
-              </a>
+                <span className="text-[10px] text-faint opacity-0 transition-opacity group-hover:opacity-100">
+                  copy
+                </span>
+              </button>
               {profile.phone && (
                 <a href={`tel:${profile.phone}`} className="font-mono text-sm text-muted hover:text-acc">
                   ☎ {profile.phone}
@@ -125,21 +142,38 @@ export default function Contact() {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            {profile.socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.url}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 transition-colors hover:border-[rgba(var(--acc-rgb),0.4)]"
-              >
-                <div>
-                  <div className="text-sm font-medium">{s.label}</div>
-                  <div className="font-mono text-[11px] text-faint">{s.handle}</div>
-                </div>
-                <span className="text-faint transition-transform group-hover:translate-x-0.5 group-hover:text-acc">↗</span>
-              </a>
-            ))}
+            {profile.socials.map((s) =>
+              s.label === 'Email' ? (
+                <button
+                  key={s.label}
+                  onClick={copyEmail}
+                  title="Click to copy"
+                  className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-left transition-colors hover:border-[rgba(var(--acc-rgb),0.4)]"
+                >
+                  <div>
+                    <div className="text-sm font-medium">{s.label}</div>
+                    <div className="font-mono text-[11px] text-faint">{s.handle}</div>
+                  </div>
+                  <span className="font-mono text-[11px] text-faint transition-colors group-hover:text-acc">
+                    copy
+                  </span>
+                </button>
+              ) : (
+                <a
+                  key={s.label}
+                  href={s.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 transition-colors hover:border-[rgba(var(--acc-rgb),0.4)]"
+                >
+                  <div>
+                    <div className="text-sm font-medium">{s.label}</div>
+                    <div className="font-mono text-[11px] text-faint">{s.handle}</div>
+                  </div>
+                  <span className="text-faint transition-transform group-hover:translate-x-0.5 group-hover:text-acc">↗</span>
+                </a>
+              ),
+            )}
           </div>
         </motion.div>
       </div>

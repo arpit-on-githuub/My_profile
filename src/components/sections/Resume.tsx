@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { profile, experience, skills } from '../../data/portfolio';
 import { SECTION_MAP } from '../../data/sections';
-import { downloadResume, printResume } from '../../lib/resume';
+import { downloadResume, printResume, viewResume } from '../../lib/resume';
 import SectionShell from './SectionShell';
 import SectionHeading from '../ui/SectionHeading';
 import GlowButton from '../ui/GlowButton';
@@ -17,7 +17,7 @@ export default function Resume() {
         icon={def.icon}
         title="Resume Artifact"
         command={def.command}
-        blurb="The recruiter-friendly version. View the hosted PDF, or grab the live-generated copy."
+        blurb="Two flavours: my original PDF, or a copy this site builds live from its own data."
       />
 
       <div className="grid gap-6 lg:grid-cols-[1fr_1.4fr]">
@@ -33,23 +33,35 @@ export default function Resume() {
             <div className="mt-1 font-display text-xl font-bold">
               {profile.name.replace(/\s+/g, '_')}_Resume
             </div>
-            <p className="mt-2 text-sm text-muted">
-              {profile.resumeUrl
-                ? 'View the official PDF, or grab a copy generated live from this site.'
-                : "Generated live from this portfolio's data — always in sync, never stale."}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              {profile.resumeUrl && (
+
+            {/* Original PDF */}
+            {profile.resumeUrl && (
+              <div className="mt-4">
+                <div className="mb-1.5 font-mono text-[11px] uppercase tracking-widest text-faint">
+                  Original résumé
+                </div>
                 <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
-                  <GlowButton>↗ view resume</GlowButton>
+                  <GlowButton>↗ view original (PDF)</GlowButton>
                 </a>
-              )}
-              <GlowButton variant="outline" onClick={downloadResume}>
-                ⬇ download
-              </GlowButton>
-              <GlowButton variant="ghost" onClick={printResume}>
-                🖨 print / PDF
-              </GlowButton>
+              </div>
+            )}
+
+            {/* AI-built */}
+            <div className="mt-4">
+              <div className="mb-1.5 font-mono text-[11px] uppercase tracking-widest text-faint">
+                AI-built (live from this site)
+              </div>
+              <div className="flex flex-wrap gap-2.5">
+                <GlowButton variant="outline" onClick={viewResume}>
+                  ⌬ view AI résumé
+                </GlowButton>
+                <GlowButton variant="ghost" onClick={downloadResume}>
+                  ⬇ download
+                </GlowButton>
+                <GlowButton variant="ghost" onClick={printResume}>
+                  🖨 print / PDF
+                </GlowButton>
+              </div>
             </div>
           </div>
 

@@ -14,7 +14,7 @@ export default function Research() {
         icon={def.icon}
         title="From the Lab"
         command={def.command}
-        blurb="A peek at the research I'm building — a few things shown, a few still under wraps."
+        blurb="A peek at the research I'm building — what's shipped, and what's coming next."
       />
 
       <GlassCard className="max-w-3xl p-6 sm:p-7" animatedBorder>
@@ -55,17 +55,15 @@ export default function Research() {
           </ul>
         </div>
 
-        {/* redacted */}
+        {/* what's next */}
         <div className="mt-5">
-          <div className="mb-2 flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-faint">
-            Still under wraps
-            <span className="rounded border border-white/10 px-1.5 py-0.5 text-[9px] text-faint">redacted</span>
+          <div className="mb-2 font-mono text-[11px] uppercase tracking-widest text-faint">
+            What's next
           </div>
           <ul className="space-y-2">
-            {research.redacted.map((r, i) => (
-              <li key={i} className="flex items-center gap-2 font-mono text-xs text-faint">
-                <span className="text-[rgb(var(--acc2-rgb))]">▸</span>
-                <span className="select-none rounded bg-white/[0.04] px-1.5 py-0.5">{r}</span>
+            {research.upcoming.map((r, i) => (
+              <li key={i} className="flex gap-2 text-sm text-muted">
+                <span className="text-[rgb(var(--acc2-rgb))]">▸</span> {r}
               </li>
             ))}
           </ul>

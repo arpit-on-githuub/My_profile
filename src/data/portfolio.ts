@@ -125,7 +125,7 @@ export const skills: SkillNode[] = [
   { name: 'Python', level: 40, category: 'Languages', blurb: 'ML, scripting, quick prototypes.' },
   { name: 'JavaScript', level: 25, category: 'Languages', blurb: 'The language of the web.' },
   { name: 'TypeScript', level: 22, category: 'Languages', blurb: 'Types catch bugs before users do.' },
-  { name: 'C', level: 24, category: 'Languages', blurb: 'Where it all clicked into place.' },
+  { name: 'C', level: 69, category: 'Languages', blurb: 'Where it all clicked into place.' },
 
   { name: 'React.js', level: 35, category: 'Frontend', blurb: 'Composable UIs, custom hooks.' },
   { name: 'Next.js', level: 28, category: 'Frontend', blurb: 'App router, server + client.' },
@@ -139,8 +139,8 @@ export const skills: SkillNode[] = [
   { name: 'Supabase', level: 30, category: 'Backend', blurb: 'Realtime + auth on Postgres.' },
   { name: 'PostgreSQL', level: 27, category: 'Backend', blurb: 'RLS, WAL, relational rigor.' },
 
-  { name: 'Machine Learning', level: 64, category: 'AI/ML', blurb: 'PRML foundations, applied.' },
-  { name: 'Recommender Systems', level: 62, category: 'AI/ML', blurb: 'Collaborative + content + SVD.' },
+  { name: 'Machine Learning', level: 40, category: 'AI/ML', blurb: 'PRML foundations, applied.' },
+  { name: 'Recommender Systems', level: 36, category: 'AI/ML', blurb: 'Collaborative + content + SVD.' },
   { name: 'NumPy / Pandas', level: 38, category: 'AI/ML', blurb: 'Data wrangling at speed.' },
   { name: 'scikit-learn', level: 30, category: 'AI/ML', blurb: 'Models, metrics, pipelines.' },
 
@@ -291,7 +291,7 @@ export const experience: ExperienceItem[] = [
   },
 ];
 
-/** A subtle, "redacted" glimpse of ongoing research — the hidden bonus section. */
+/** A glimpse of ongoing research — Campus Porter. */
 export interface ResearchGlimpse {
   project: string;
   subtitle: string;
@@ -299,7 +299,7 @@ export interface ResearchGlimpse {
   status: string;
   link: { label: string; url: string };
   revealed: string[];
-  redacted: string[];
+  upcoming: string[];
   note: string;
 }
 
@@ -314,10 +314,10 @@ export const research: ResearchGlimpse = {
     'Authored the feature-requirements spec across 3 core user flows.',
     'MERN-stack core, designed to scale to 200+ campus users.',
   ],
-  redacted: [
-    'Handoff trust model & ████████ verification',
-    'Porter assignment via ███████ routing heuristics',
-    'Pilot rollout metrics — ████ users, ███% faster handoffs',
+  upcoming: [
+    'Trust & safety: handoff verification and host-controlled approvals.',
+    'Smarter porter assignment with proximity-based routing.',
+    'Campus pilot rollout with a rider feedback loop.',
   ],
   note: 'Still cooking. Happy to walk you through the full thing on request.',
 };

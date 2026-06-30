@@ -34,6 +34,7 @@ export default function Terminal() {
     pushLine({ type: 'system', text: 'arpit.exe terminal v1.0 — interactive portfolio shell' });
     pushLine({ type: 'output', text: 'Type a command to unlock a section. New here? type `help`.' });
     pushLine({ type: 'hint', text: 'Quickstart: `decode about` → `show skills` → `visit projects`' });
+    pushLine({ type: 'hint', text: 'psst — this shell hides secret commands & easter eggs. The full list lives in the README (GitHub link in the footer). Try one: `matrix`' });
   }, [history.length, pushLine]);
 
   // Auto-scroll to bottom on new output.

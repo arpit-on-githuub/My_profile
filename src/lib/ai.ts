@@ -24,6 +24,23 @@ function project(id: string) {
   return projects.find((p) => p.id === id)!;
 }
 
+/** Detect a specific project mentioned in a query (by name/keyword). */
+const PROJECT_KEYWORDS: { kw: string; id: string }[] = [
+  { kw: 'vamos', id: 'vamos' },
+  { kw: 'orbit', id: 'orbit' },
+  { kw: 'movie', id: 'movie' },
+  { kw: 'recommend', id: 'movie' },
+  { kw: 'recommender', id: 'movie' },
+  { kw: 'route', id: 'route' },
+  { kw: 'dijkstra', id: 'route' },
+  { kw: 'planner', id: 'route' },
+];
+
+function findProjectInQuery(q: string) {
+  const hit = PROJECT_KEYWORDS.find(({ kw }) => q.includes(kw));
+  return hit ? projects.find((p) => p.id === hit.id) : undefined;
+}
+
 function recommendByRole(role: string): AIResponse {
   const r = role.toLowerCase();
   let id = aiKnowledge.impressivePick;
@@ -76,6 +93,27 @@ const matchers: Matcher[] = [
       ],
       chips: ['What are they best at?', 'Best project for backend roles', 'Show the most impressive work'],
     }),
+  },
+  {
+    id: 'project-by-name',
+    test: (q) => !!findProjectInQuery(q),
+    run: (q) => {
+      const p = findProjectInQuery(q)!;
+      const oneLine = /one[ -]?line|tl;?dr|in short|briefly|in a line|summar/.test(q);
+      const reply = oneLine
+        ? [`**${p.name}** — ${p.tagline}.`]
+        : [
+            `**${p.name}** — ${p.tagline}.`,
+            p.aiSummary,
+            `Signal: ${p.metrics.map((m) => `${m.value} ${m.label}`).join(' · ')}.`,
+          ];
+      return {
+        reply,
+        focusProject: p.id,
+        openSection: 'projects',
+        chips: ['What are they best at?', 'Best project for backend', 'Show me all projects'],
+      };
+    },
   },
   {
     id: 'best-at',
@@ -252,13 +290,17 @@ export function generateReply(question: string): AIResponse {
       /* keep scanning */
     }
   }
-  // Witty, useful fallback
+  // Witty, useful fallback — suggest concrete things it CAN answer.
+  const featuredNames = projects
+    .filter((p) => p.featured)
+    .map((p) => p.name)
+    .join(', ');
   return {
     reply: [
-      `I don’t have a canned answer for that, but here’s the gist: ${aiKnowledge.bestAt}`,
-      'Try asking about a role ("best project for backend"), strengths, or how to reach out.',
+      `I’m a focused guide, not a chatty general AI — so I stick to what I know about ${profile.name}.`,
+      `Try asking about a project (e.g. “${projects[0].name} in one line”, projects: ${featuredNames}), a role (“best project for backend”), strengths, education, or how to reach out.`,
     ],
-    chips: ['What are they best at?', 'Best for AI roles', 'How do I contact them?'],
+    chips: [`${projects[0].name} in one line`, 'What are they best at?', 'How do I contact them?'],
   };
 }
 

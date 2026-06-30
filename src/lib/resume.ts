@@ -74,3 +74,12 @@ export function printResume() {
   w.focus();
   setTimeout(() => w.print(), 350);
 }
+
+/** Opens the live, AI-built resume in a new tab (view only — no print prompt). */
+export function viewResume() {
+  const w = window.open('', '_blank');
+  if (!w) return;
+  w.document.write(buildResumeHTML());
+  w.document.close();
+  w.focus();
+}

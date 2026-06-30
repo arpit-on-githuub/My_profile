@@ -2,6 +2,7 @@ import { useGameStore } from '../store/useGameStore';
 import { SECTIONS } from '../data/sections';
 import { BADGES } from '../data/badges';
 import { profile } from '../data/portfolio';
+import { executeCommand } from '../lib/commands';
 
 export default function Footer() {
   const unlockedCount = useGameStore((s) => s.unlockedCount());
@@ -34,17 +35,28 @@ export default function Footer() {
           © {new Date().getFullYear()} {profile.name} · built as a playable portfolio
         </div>
         <div className="flex items-center gap-3">
-          {profile.socials.map((s) => (
-            <a
-              key={s.label}
-              href={s.url}
-              target="_blank"
-              rel="noreferrer"
-              className="font-mono text-xs text-muted transition-colors hover:text-acc"
-            >
-              {s.label}
-            </a>
-          ))}
+          {profile.socials.map((s) =>
+            s.label === 'Email' ? (
+              // Don't fire a dead mailto — take the visitor to the working contact form.
+              <button
+                key={s.label}
+                onClick={() => executeCommand('contact me')}
+                className="font-mono text-xs text-muted transition-colors hover:text-acc"
+              >
+                {s.label}
+              </button>
+            ) : (
+              <a
+                key={s.label}
+                href={s.url}
+                target="_blank"
+                rel="noreferrer"
+                className="font-mono text-xs text-muted transition-colors hover:text-acc"
+              >
+                {s.label}
+              </a>
+            ),
+          )}
           <button
             onClick={() => setHelpOpen(true)}
             className="font-mono text-xs text-acc transition-colors hover:brightness-125"
@@ -55,7 +67,7 @@ export default function Footer() {
       </div>
 
       <div className="mt-6 text-center font-mono text-[10px] text-faint/60">
-        psst — open devtools, try the Konami code, or type a secret command. curiosity is rewarded.
+        psst — try the Konami code, open DevTools, or type a secret command. full list of easter eggs is in the README. curiosity is rewarded.
       </div>
     </footer>
   );
