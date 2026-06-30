@@ -82,7 +82,7 @@ npm run lint     # oxlint
 | `help` | List every command |
 | `decode about` | About me |
 | `show skills` | Skill tree |
-| `load education` | Education, JEE ranks & coursework |
+| `load education` | Education, ranks & coursework |
 | `open toolbox` | Tools & platforms I've worked with |
 | `visit projects` | Project build log (hover to preview!) |
 | `trace experience` | Work timeline |
