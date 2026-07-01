@@ -76,6 +76,8 @@ interface GameState {
   assistantOpen: boolean;
   helpOpen: boolean;
   aiQuestionCount: number;
+  /** When true, pushToast is muted (used to batch bursts like `run portfolio()`). */
+  muteToasts: boolean;
 
   // actions
   setBooted: (v: boolean) => void;
@@ -94,6 +96,7 @@ interface GameState {
   setFocusProject: (id: string | null) => void;
   setAssistantOpen: (v: boolean) => void;
   setHelpOpen: (v: boolean) => void;
+  setMuteToasts: (v: boolean) => void;
   bumpAiQuestions: () => void;
   dismissToast: (id: string) => void;
   pushToast: (t: Omit<Toast, 'id'>) => void;
@@ -120,6 +123,7 @@ export const useGameStore = create<GameState>()(
       assistantOpen: false,
       helpOpen: false,
       aiQuestionCount: 0,
+      muteToasts: false,
 
       setBooted: (v) => set({ booted: v }),
 
@@ -238,8 +242,16 @@ export const useGameStore = create<GameState>()(
           return { aiQuestionCount: c };
         }),
 
+      setMuteToasts: (v) => set({ muteToasts: v }),
+
       pushToast: (t) =>
-        set((s) => ({ notifications: [...s.notifications, { ...t, id: uid('toast') }] })),
+        set((s) => {
+          // Muted during batch operations (e.g. run portfolio()).
+          if (s.muteToasts) return {};
+          // Cap the on-screen queue so bursts can never pile up and block the UI.
+          const next = [...s.notifications, { ...t, id: uid('toast') }];
+          return { notifications: next.slice(-3) };
+        }),
 
       dismissToast: (id) =>
         set((s) => ({ notifications: s.notifications.filter((n) => n.id !== id) })),

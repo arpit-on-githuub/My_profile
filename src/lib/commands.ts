@@ -139,7 +139,12 @@ async function runPortfolio() {
   const store = useGameStore.getState();
   push('system', 'executing run portfolio() …');
   push('output', '  compiling sections ▸ resolving dependencies ▸ mounting UI');
-  // Unlock all sequentially with a tiny delay for drama.
+
+  const before = store.unlockedCount();
+  const levelBefore = store.level;
+
+  // Mute the toast burst — unlocking everything fires many level-ups & badges.
+  store.setMuteToasts(true);
   for (const s of SECTIONS) {
     await new Promise((r) => setTimeout(r, 130));
     if (!store.isUnlocked(s.id)) {
@@ -147,7 +152,24 @@ async function runPortfolio() {
       push('success', `  ✓ ${s.title} mounted`);
     }
   }
+  // Let any queued (microtask) level-up toasts flush while still muted.
+  await new Promise((r) => setTimeout(r, 0));
+  store.setMuteToasts(false);
+
   push('success', 'portfolio() resolved → 100% complete. Show-off mode engaged.');
+
+  // One tidy summary toast instead of a dozen.
+  const after = useGameStore.getState();
+  const unlockedNow = after.unlockedCount() - before;
+  after.pushToast({
+    kind: 'levelup',
+    title: unlockedNow > 0 ? '100% Unlocked 🏁' : 'Already 100% 🏁',
+    detail:
+      after.level > levelBefore
+        ? `Reached Level ${after.level} · ${after.badges.length} badges`
+        : `${after.unlockedCount()} sections · ${after.badges.length} badges`,
+    icon: '🏁',
+  });
 }
 
 function handleAsk(question: string) {

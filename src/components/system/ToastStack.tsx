@@ -16,7 +16,7 @@ export default function ToastStack() {
   return (
     <div className="pointer-events-none fixed bottom-5 right-5 z-[150] flex w-[320px] max-w-[88vw] flex-col gap-2.5">
       <AnimatePresence>
-        {notifications.slice(-4).map((t) => (
+        {notifications.slice(-3).map((t) => (
           <ToastItem key={t.id} toast={t} />
         ))}
       </AnimatePresence>

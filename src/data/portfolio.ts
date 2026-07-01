@@ -130,7 +130,9 @@ export const skills: SkillNode[] = [
   { name: 'React.js', level: 35, category: 'Frontend', blurb: 'Composable UIs, custom hooks.' },
   { name: 'Next.js', level: 28, category: 'Frontend', blurb: 'App router, server + client.' },
   { name: 'Vite', level: 30, category: 'Frontend', blurb: 'Instant dev, lean builds.' },
+  { name: 'Tailwind CSS', level: 34, category: 'Frontend', blurb: 'Utility-first design systems.' },
   { name: 'Framer Motion', level: 24, category: 'Frontend', blurb: 'Gestures & motion that feel premium.' },
+  { name: 'Zustand', level: 28, category: 'Frontend', blurb: 'Tiny, ergonomic state management.' },
   { name: 'HTML / CSS', level: 33, category: 'Frontend', blurb: 'Vanilla CSS, design systems.' },
 
   { name: 'Node.js', level: 40, category: 'Backend', blurb: 'APIs and realtime servers.' },
@@ -138,6 +140,8 @@ export const skills: SkillNode[] = [
   { name: 'MongoDB', level: 33, category: 'Backend', blurb: 'Document modeling for MERN.' },
   { name: 'Supabase', level: 30, category: 'Backend', blurb: 'Realtime + auth on Postgres.' },
   { name: 'PostgreSQL', level: 27, category: 'Backend', blurb: 'RLS, WAL, relational rigor.' },
+  { name: 'REST APIs', level: 34, category: 'Backend', blurb: 'Design, fetch, integrate.' },
+  { name: 'Email (SMTP / Web3Forms)', level: 30, category: 'Backend', blurb: 'Form-to-inbox delivery.' },
 
   { name: 'Machine Learning', level: 40, category: 'AI/ML', blurb: 'PRML foundations, applied.' },
   { name: 'Recommender Systems', level: 36, category: 'AI/ML', blurb: 'Collaborative + content + SVD.' },
@@ -258,6 +262,35 @@ export const projects: Project[] = [
     accent: '#fbbf24',
     year: '2025',
   },
+  {
+    id: 'devexe',
+    name: 'arpit.exe',
+    tagline: 'This very portfolio — a playable terminal game',
+    description:
+      'The site you\'re on: a game-like developer portfolio where visitors unlock sections by typing terminal commands. Features a command parser with fuzzy matching, an in-browser AI guide, an XP/level system, easter eggs, and a working contact form wired to an email service.',
+    aiSummary:
+      'Frontend-craft + product project. Demonstrates state management, motion design, a custom command engine, an intent-based AI guide, and email integration — all shipped as a fast static site. Strong signal for frontend and design-engineering roles.',
+    tags: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Zustand', 'Web3Forms'],
+    roles: ['frontend', 'fullstack'],
+    metrics: [
+      { label: 'unlockable sections', value: '11' },
+      { label: 'runtime deps', value: 'lean' },
+      { label: 'API keys leaked', value: '0' },
+    ],
+    highlights: [
+      'Custom command parser with fuzzy matching, autocomplete, and witty error handling.',
+      'In-browser AI guide (intent detection + project recommender) — no backend, no API key.',
+      'Zustand state with localStorage persistence for XP, levels, badges, and unlocked sections.',
+      'Contact form integrated with an email service (Web3Forms) + SMTP-style mailto fallback.',
+    ],
+    links: [
+      { label: 'Live Site', url: 'https://my-profile-phi-vert.vercel.app' },
+      { label: 'GitHub', url: 'https://github.com/arpit-on-githuub/My_profile' },
+    ],
+    accent: '#a855f7',
+    year: '2026',
+    featured: true,
+  },
 ];
 
 export const experience: ExperienceItem[] = [
@@ -375,7 +408,19 @@ export const toolbox: ToolGroup[] = [
       { name: 'Vite', note: 'Build tool' },
       { name: 'Node.js', note: 'JS runtime' },
       { name: 'Express.js', note: 'API framework' },
+      { name: 'Tailwind CSS', note: 'Styling' },
       { name: 'Framer Motion', note: 'Animation' },
+      { name: 'Zustand', note: 'State management' },
+    ],
+  },
+  {
+    category: 'APIs & Services',
+    icon: '📡',
+    items: [
+      { name: 'Web3Forms', note: 'Form-to-email' },
+      { name: 'SMTP / mailto', note: 'Email delivery' },
+      { name: 'REST APIs', note: 'Fetch & integrate' },
+      { name: 'TMDB API', note: 'Movie data' },
     ],
   },
   {

@@ -7,31 +7,105 @@ import SectionShell from './SectionShell';
 import SectionHeading from '../ui/SectionHeading';
 import GlowButton from '../ui/GlowButton';
 
+/* ============================================================================
+   📬 TO MAKE THE FORM DELIVER TO YOUR INBOX (one-time, ~60 seconds):
+   1. Go to  https://web3forms.com
+   2. Type the email where you want messages delivered → "Create Access Key".
+   3. Copy the key from your email and paste it between the quotes below.
+   That's it. No account, no server, free. Works for every visitor.
+   (If this stays empty, the form falls back to opening the mail app.)
+============================================================================ */
+const WEB3FORMS_ACCESS_KEY = 'ba985bd8-5be0-4657-8350-226cc7d0dd9b'; // ← paste your key here
+
+type Status = 'idle' | 'sending' | 'sent' | 'error';
+
 export default function Contact() {
   const def = SECTION_MAP.contact;
   const pushToast = useGameStore((s) => s.pushToast);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [opened, setOpened] = useState(false);
+  const [status, setStatus] = useState<Status>('idle');
 
-  // Submitting opens the visitor's own mail app, pre-filled and addressed to me.
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const openMailApp = () => {
     const subject = encodeURIComponent(`Portfolio contact from ${form.name || 'a visitor'}`);
     const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
     window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-    setOpened(true);
-    pushToast({
-      kind: 'info',
-      title: 'Boss defeated 🐉',
-      detail: 'Opening your mail app — just hit send!',
-      icon: '📨',
-    });
   };
 
-  const buttonLabel = opened ? 'reopen mail app ↗' : 'open mail app ↗';
-  const statusLine = opened
-    ? '// opened your mail app — just hit send'
-    : '// opens your mail app, pre-filled & addressed to me';
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (status === 'sending') return;
+
+    // No key configured → fall back to opening the visitor's mail app.
+    if (!WEB3FORMS_ACCESS_KEY) {
+      openMailApp();
+      setStatus('sent');
+      pushToast({
+        kind: 'info',
+        title: 'Opening your mail app 📨',
+        detail: 'Just hit send there to reach me!',
+        icon: '📨',
+      });
+      return;
+    }
+
+    // Real delivery via Web3Forms — lands straight in the inbox.
+    setStatus('sending');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Portfolio contact from ${form.name || 'a visitor'}`,
+          from_name: 'arpit.exe portfolio',
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus('sent');
+        setForm({ name: '', email: '', message: '' });
+        pushToast({
+          kind: 'info',
+          title: 'Boss defeated 🐉',
+          detail: 'Message delivered. Thanks for reaching out!',
+          icon: '🤝',
+        });
+      } else {
+        throw new Error(data.message || 'failed');
+      }
+    } catch {
+      // Service/network hiccup → don't lose the message, open the mail app.
+      openMailApp();
+      setStatus('error');
+    }
+  };
+
+  const buttonLabel =
+    status === 'sending'
+      ? 'transmitting…'
+      : status === 'sent'
+        ? WEB3FORMS_ACCESS_KEY
+          ? 'sent ✓ — send another'
+          : 'opened mail app ↗'
+        : status === 'error'
+          ? 'opened your mail app ↗'
+          : WEB3FORMS_ACCESS_KEY
+            ? 'send message ↗'
+            : 'open mail app ↗';
+
+  const statusLine =
+    status === 'sending'
+      ? '// status: sending…'
+      : status === 'sent'
+        ? '// status: 200 OK — message on its way'
+        : status === 'error'
+          ? '// status: fell back to your mail app'
+          : WEB3FORMS_ACCESS_KEY
+            ? '// delivered straight to my inbox'
+            : '// opens your mail app, pre-filled & addressed to me';
 
   const copyEmail = async () => {
     try {
@@ -100,7 +174,9 @@ export default function Contact() {
             </Field>
             <div className="flex items-center justify-between">
               <span className="font-mono text-[11px] text-faint">{statusLine}</span>
-              <GlowButton type="submit">{buttonLabel}</GlowButton>
+              <GlowButton type="submit" disabled={status === 'sending'}>
+                {buttonLabel}
+              </GlowButton>
             </div>
           </div>
         </motion.form>
