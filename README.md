@@ -54,9 +54,25 @@ just type `run portfolio()` to reveal everything at once.
 
 ## Tech stack
 
-**React 19 · TypeScript · Vite · Tailwind CSS v4 · Framer Motion · Zustand**
+**React 19 · TypeScript · Vite · Tailwind CSS v4 · Framer Motion · Zustand · Web3Forms**
 
-No backend, no database, no API keys - it's a fast static site that deploys anywhere (I use Vercel).
+It's a fast static site (no server to maintain) that deploys anywhere — I host it on Vercel.
+The one "backend-ish" piece is the contact form, which delivers messages straight to my inbox
+via Web3Forms (see below).
+
+## 📬 Working contact form — real email delivery
+
+The contact form isn't a fake demo — it actually **delivers messages to my inbox in real time**.
+On submit it POSTs to the [Web3Forms](https://web3forms.com) API (with an SMTP-style `mailto`
+fallback if the network hiccups), so a static site with no server of its own can still send email.
+
+Here's an actual submission landing in my inbox:
+
+![Real-time email delivery from the portfolio contact form](docs/email-delivery.png)
+
+> Under the hood: a `fetch` POST to Web3Forms with proper `sending / sent / error` states, form
+> reset on success, and a graceful mail-app fallback. Implementation lives in
+> [`src/components/sections/Contact.tsx`](src/components/sections/Contact.tsx).
 
 ## Run it locally
 

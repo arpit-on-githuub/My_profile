@@ -143,7 +143,7 @@ export const skills: SkillNode[] = [
   { name: 'REST APIs', level: 34, category: 'Backend', blurb: 'Design, fetch, integrate.' },
   { name: 'Email (SMTP / Web3Forms)', level: 30, category: 'Backend', blurb: 'Form-to-inbox delivery.' },
 
-  { name: 'Machine Learning', level: 40, category: 'AI/ML', blurb: 'PRML foundations, applied.' },
+  { name: 'Machine Learning', level: 67, category: 'AI/ML', blurb: 'PRML foundations, applied.' },
   { name: 'Recommender Systems', level: 36, category: 'AI/ML', blurb: 'Collaborative + content + SVD.' },
   { name: 'NumPy / Pandas', level: 38, category: 'AI/ML', blurb: 'Data wrangling at speed.' },
   { name: 'scikit-learn', level: 30, category: 'AI/ML', blurb: 'Models, metrics, pipelines.' },
